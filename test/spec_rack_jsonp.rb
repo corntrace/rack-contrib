@@ -55,11 +55,11 @@ context "Rack::JSONP" do
     
     specify "should write status code to response and set status to 200 if status is 40x or 50x" do
       callback = 'foo'
-      app = lambda { |env| [404, {'Content-Type' => 'application/json'}, [""]] }
+      app = lambda { |env| [401, {'Content-Type' => 'application/json'}, [""]] }
       request = Rack::MockRequest.env_for("/", :params => "foo=bar&callback=#{callback}")
       status, headers, body = Rack::JSONP.new(app).call(request)
       status.should.equal 200
-      body.should.equal ["#{callback}({\"errorCode\":404})"]
+      body.should.equal ["#{callback}({\"errorCode\":401})"]
     end
     
   end

@@ -67,7 +67,7 @@ module Rack
     # status code to 200. That because the jsonp's implemetation could not handler 
     # http status code when error occured, which could be meaningful in webservice.
     def translate_error_code(status, response)
-      if status % 400 == 4 || status % 500 == 5
+      if status / 100 == 4 || status / 100 == 5
         [200, [%Q|{"errorCode":#{status}}|]]
       else
         [status, response]
