@@ -24,7 +24,7 @@ module Rack
       request = Rack::Request.new(env)
       
       if is_json?(headers) && has_callback?(request)
-        status = translate_error_code(status, response)
+        status, response = translate_error_code(status, response)
         response = pad(request.params.delete('callback'), response)
 
         # No longer json, its javascript!
