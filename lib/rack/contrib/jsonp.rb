@@ -24,7 +24,7 @@ module Rack
       request = Rack::Request.new(env)
       
       if is_json?(headers) && has_callback?(request)
-        status = translate_error_code!(status, response)
+        status = translate_error_code(status, response)
         response = pad(request.params.delete('callback'), response)
 
         # No longer json, its javascript!
@@ -43,6 +43,8 @@ module Rack
     
     def is_json?(headers)
       headers['Content-Type'].include?('application/json')
+    rescue
+      nil
     end
     
     def has_callback?(request)
@@ -64,13 +66,11 @@ module Rack
     # Translate status code 40x and 50x to a json string in response, and change
     # status code to 200. That because the jsonp's implemetation could not handler 
     # http status code when error occured, which could be meaningful in webservice.
-    def translate_error_code!(status, response)
+    def translate_error_code(status, response)
       if status % 400 == 4 || status % 500 == 5
-        response.slice(1..-1)  # keep the first element, delete the others
-        response[0] = %Q|{"errorCode":#{status}}|
-        status = 200
+        [200, [%Q|{"errorCode":#{status}}|]]
       else
-        status
+        [status, response]
       end
     end
 

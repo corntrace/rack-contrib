@@ -3,7 +3,7 @@ require 'rack'
 module Rack
   module Contrib
     def self.release
-      "1.0.2"
+      "1.0.2.1"
     end
   end
 
