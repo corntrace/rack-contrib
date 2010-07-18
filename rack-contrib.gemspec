@@ -3,14 +3,14 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
 
   s.name = 'rack-contrib'
-  s.version = '1.0.1'
-  s.date = '2010-06-09'
+  s.version = '1.0.2'
+  s.date = '2010-07-18'
 
   s.description = "Contributed Rack Middleware and Utilities"
   s.summary     = "Contributed Rack Middleware and Utilities"
 
-  s.authors = ["rack-devel"]
-  s.email = "rack-devel@googlegroups.com"
+  s.authors = ["Kevin Fu", "rack-devel"]
+  s.email = ["corntrace@gmail.com", "rack-devel@googlegroups.com"]
 
   # = MANIFEST =
   s.files = %w[
@@ -97,7 +97,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'json', '>= 1.1'
 
   s.has_rdoc = true
-  s.homepage = "http://github.com/rack/rack-contrib/"
+  s.homepage = "http://github.com/corntrace/rack-contrib/"
   s.rdoc_options = ["--line-numbers", "--inline-source", "--title", "rack-contrib", "--main", "README"]
   s.require_paths = %w[lib]
   s.rubygems_version = '1.1.1'
